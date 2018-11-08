@@ -42,22 +42,19 @@
 
         <div class="list-group">
             <a [routerLink]="['../product', product.id ]"
-               class="list-group-item list-group-item-action flex-column
-align-items-start"
+               class="list-group-item list-group-item-action flex-column align-items-start"
                *ngFor="let product of products; trackBy: trackId">
                 <div class="row">
                     <div class="col-2 col-xs-12 justify-content-center">
-                        <img [src]="'data:' + product.imageContentType +
-';base64,' + product.image"
+                        <img [src]="'data:' + product.imageContentType + ';base64,' + product.image"
                              style="max-height:150px;" alt="product image"/>
                     </div>
                     <div class="col col-xs-12">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">{{product.name}}</h5>
                             <small *ngIf="product.productCategory">
-                                <a [routerLink]="['../product-category',
-product.productCategory?.id ]" >
-                                    Category: {{product.productCategory?.id}}
+                                <a [routerLink]="['../product-category', product.productCategory?.id ]" >
+                                    Category: {{product.productCategory?.name}}
                                 </a>
                             </small>
                         </div>
@@ -65,16 +62,11 @@ product.productCategory?.id ]" >
                         <p class="mb-1">{{product.price | currency:'USD'}}</p>
                         <small>
                             Size:
-                            <span jhiTranslate="{{'storeApp.Size.' +
-product.size}}">
-{{product.size}}
-</span>
+                            <span jhiTranslate="{{'storeApp.Size.' + product.size}}">{{product.size}}</span>
                         </small>
                         <div *jhiHasAnyAuthority="'ROLE_ADMIN'">
                             <button type="submit"
-                                    [routerLink]="['/',
-{ outlets: { popup: 'product/'+
-product.id + '/edit'} }]"
+                                    [routerLink]="['/', { outlets: { popup: 'product/'+ product.id + '/edit'} }]"
                                     replaceUrl="true"
                                     queryParamsHandling="merge"
                                     class="btn btn-primary btn-sm">
@@ -83,9 +75,7 @@ product.id + '/edit'} }]"
                                       jhiTranslate="entity.action.edit">Edit</span>
                             </button>
                             <button type="submit"
-                                    [routerLink]="['/',
-{ outlets: { popup: 'product/'+
-product.id + '/delete'} }]"
+                                    [routerLink]="['/', { outlets: { popup: 'product/'+ product.id + '/delete'} }]"
                                     replaceUrl="true"
                                     queryParamsHandling="merge"
                                     class="btn btn-danger btn-sm">
