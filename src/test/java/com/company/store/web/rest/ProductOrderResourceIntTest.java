@@ -3,6 +3,7 @@ package com.company.store.web.rest;
 import com.company.store.StoreApp;
 
 import com.company.store.domain.ProductOrder;
+import com.company.store.domain.Customer;
 import com.company.store.repository.ProductOrderRepository;
 import com.company.store.service.ProductOrderService;
 import com.company.store.web.rest.errors.ExceptionTranslator;
@@ -96,6 +97,11 @@ public class ProductOrderResourceIntTest {
             .placedDate(DEFAULT_PLACED_DATE)
             .status(DEFAULT_STATUS)
             .code(DEFAULT_CODE);
+        // Add required entity
+        Customer customer = CustomerResourceIntTest.createEntity(em);
+        em.persist(customer);
+        em.flush();
+        productOrder.setCustomer(customer);
         return productOrder;
     }
 

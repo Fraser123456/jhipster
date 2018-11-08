@@ -3,6 +3,7 @@ package com.company.store.web.rest;
 import com.company.store.StoreApp;
 
 import com.company.store.domain.Shipment;
+import com.company.store.domain.Invoice;
 import com.company.store.repository.ShipmentRepository;
 import com.company.store.service.ShipmentService;
 import com.company.store.web.rest.errors.ExceptionTranslator;
@@ -95,6 +96,11 @@ public class ShipmentResourceIntTest {
             .trackingCode(DEFAULT_TRACKING_CODE)
             .date(DEFAULT_DATE)
             .details(DEFAULT_DETAILS);
+        // Add required entity
+        Invoice invoice = InvoiceResourceIntTest.createEntity(em);
+        em.persist(invoice);
+        em.flush();
+        shipment.setInvoice(invoice);
         return shipment;
     }
 
